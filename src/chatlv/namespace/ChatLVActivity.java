@@ -25,7 +25,6 @@ public class ChatLVActivity extends Activity
 {
 	ArrayAdapter<String> adapter;
 	EditText etext;
-	//TextView tv;
 	ListView lv;
 	Connection connection;
     public void onCreate(Bundle savedInstanceState)
@@ -33,7 +32,6 @@ public class ChatLVActivity extends Activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         etext = (EditText) findViewById(R.id.editText1);
-		//tv = (TextView) findViewById(R.id.textView1);
         lv = (ListView) findViewById(android.R.id.list);
 		Button btn = (Button) findViewById(R.id.button1);
 		try {
@@ -52,7 +50,7 @@ public class ChatLVActivity extends Activity
 					String body = msg.getBody();
 					adapter.add(from + " : " + body + "\n");
 					lv.setSelection(adapter.getCount()-1);
-					//tv.append(from + " : " + body + "\n");
+					lv.setSelection(adapter.getCount()-1);
 				}
 			}, new MessageTypeFilter(Message.Type.normal));
 		} catch (XMPPException e) {
@@ -62,7 +60,6 @@ public class ChatLVActivity extends Activity
 			public void onClick(View v) {
 				adapter.add("ME: " + etext.getText().toString() + "\n");
 				//lv.setSelection(adapter.getCount()-1);
-				//tv.append("ME: " + etext.getText().toString() + "\n");
 				try
 				{
 					Message msg = new Message();
