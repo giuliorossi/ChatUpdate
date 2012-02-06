@@ -2,7 +2,7 @@
 <resources>
 
     <string name="hello">Hello World, ChatLVActivity!</string>
-    <string name="app_name">ChatLV</string>
+    <string name="app_name">ChatUpdate</string>
     <string name="Button">Send</string>
 
 </resources>

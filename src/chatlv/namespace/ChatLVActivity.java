@@ -27,10 +27,14 @@ public class ChatLVActivity extends Activity
 	EditText etext;
 	ListView lv;
 	Connection connection;
+	String username;
+	String password;
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+        username = getIntent().getExtras().getString("username");
+        password = getIntent().getExtras().getString("password");
         etext = (EditText) findViewById(R.id.editText1);
         lv = (ListView) findViewById(android.R.id.list);
         adapter = new ArrayAdapter<String>(ChatLVActivity.this, android.R.layout.simple_list_item_1);
@@ -42,7 +46,7 @@ public class ChatLVActivity extends Activity
 			config.setSecurityMode(ConnectionConfiguration.SecurityMode.disabled);
 			connection = new XMPPConnection(config);
 			connection.connect();
-			connection.login("rossi", "rossi");
+			connection.login(username, password);
 			
 			connection.addPacketListener(new PacketListener() {
 
