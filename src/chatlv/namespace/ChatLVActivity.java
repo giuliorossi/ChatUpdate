@@ -33,6 +33,9 @@ public class ChatLVActivity extends Activity
         setContentView(R.layout.main);
         etext = (EditText) findViewById(R.id.editText1);
         lv = (ListView) findViewById(android.R.id.list);
+        adapter = new ArrayAdapter<String>(ChatLVActivity.this, android.R.layout.simple_list_item_1);
+        lv.setAdapter(adapter);
+        adapter.add("inizio chat");
 		Button btn = (Button) findViewById(R.id.button1);
 		try {
 			ConnectionConfiguration config = new ConnectionConfiguration("ppl.eln.uniroma2.it", 5222);
@@ -40,7 +43,7 @@ public class ChatLVActivity extends Activity
 			connection = new XMPPConnection(config);
 			connection.connect();
 			connection.login("rossi", "rossi");
-			adapter = new ArrayAdapter<String>(ChatLVActivity.this, android.R.layout.simple_list_item_1);
+			
 			connection.addPacketListener(new PacketListener() {
 
 				@Override
@@ -50,7 +53,6 @@ public class ChatLVActivity extends Activity
 					String body = msg.getBody();
 					adapter.add(from + " : " + body + "\n");
 					lv.setSelection(adapter.getCount()-1);
-					lv.setSelection(adapter.getCount()-1);
 				}
 			}, new MessageTypeFilter(Message.Type.normal));
 		} catch (XMPPException e) {
@@ -59,7 +61,7 @@ public class ChatLVActivity extends Activity
 		btn.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				adapter.add("ME: " + etext.getText().toString() + "\n");
-				//lv.setSelection(adapter.getCount()-1);
+				lv.setSelection(adapter.getCount()-1);
 				try
 				{
 					Message msg = new Message();
