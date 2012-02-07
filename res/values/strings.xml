@@ -4,5 +4,9 @@
     <string name="hello">Hello World, ChatLVActivity!</string>
     <string name="app_name">ChatUpdate</string>
     <string name="Button">Send</string>
-
+    <string name="user">Username</string>
+    <string name="pwd">Password</string>
+    <string name="btnlog">Vai</string>
+    <string name="text">Scegli un utente tra quelli nella lista con cui chattare oppure aggiungi un nuovo utente</string>
+	<string name="add">OK</string>
 </resources>

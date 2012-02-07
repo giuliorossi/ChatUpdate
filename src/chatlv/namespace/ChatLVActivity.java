@@ -29,12 +29,14 @@ public class ChatLVActivity extends Activity
 	Connection connection;
 	String username;
 	String password;
+	String touser;
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         username = getIntent().getExtras().getString("username");
         password = getIntent().getExtras().getString("password");
+        touser = getIntent().getExtras().getString("touser");
         etext = (EditText) findViewById(R.id.editText1);
         lv = (ListView) findViewById(android.R.id.list);
         adapter = new ArrayAdapter<String>(ChatLVActivity.this, android.R.layout.simple_list_item_1);
