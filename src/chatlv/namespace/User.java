@@ -3,13 +3,13 @@ package chatlv.namespace;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
 
 public class User extends Activity
 {
@@ -21,6 +21,7 @@ public class User extends Activity
 	String password;
 	Button ok;
 	Button go;
+	Object checked;
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -33,6 +34,7 @@ public class User extends Activity
 		et = (EditText)findViewById(R.id.editText1);
 		lv = (ListView) findViewById(android.R.id.list);
 		lv.setAdapter(adapter);
+		lv.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 		ok = (Button) findViewById(R.id.button1);
 		go = (Button) findViewById(R.id.button2);
 		ok.setOnClickListener(new OnClickListener() 
@@ -51,8 +53,10 @@ public class User extends Activity
 				Intent intent = new Intent(User.this, ChatLVActivity.class);
 		        intent.putExtra("username", username);
 		        intent.putExtra("password", password);
-		        TextView user = (TextView)findViewById(lv.getCheckedItemPosition());
-		        intent.putExtra("touser", user.getText().toString());
+		        checked = lv.getItemAtPosition(lv.getCheckedItemPosition());
+		        Log.d("User2Chat", checked.toString());
+		        intent.putExtra("touser", checked.toString());
+		        startActivity(intent);
 			}
 		});
 	}
