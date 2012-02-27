@@ -12,6 +12,7 @@ import org.jivesoftware.smack.packet.Packet;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
@@ -57,6 +58,7 @@ public class ChatLVActivity extends Activity
 					Message msg = (Message) pkt;
 					String from = msg.getFrom();
 					String body = msg.getBody();
+					Log.d("MSG RICV", msg.getFrom()+" : "+msg.getBody());
 					adapter.add(from + " : " + body + "\n");
 					lv.setSelection(adapter.getCount()-1);
 				}
@@ -71,8 +73,10 @@ public class ChatLVActivity extends Activity
 				try
 				{
 					Message msg = new Message();
-					msg.setTo("loreti@ppl.eln.uniroma2.it");
+					//msg.setTo("loreti@ppl.eln.uniroma2.it");
+					msg.setTo(touser);
 					msg.setBody(etext.getText().toString());
+					Log.d("MSG SENT", msg.getTo()+" : "+msg.getBody());
 					connection.sendPacket(msg);
 				}
 				catch (Exception e)
