@@ -73,7 +73,6 @@ public class ChatLVActivity extends Activity
 				try
 				{
 					Message msg = new Message();
-					//msg.setTo("loreti@ppl.eln.uniroma2.it");
 					msg.setTo(touser);
 					msg.setBody(etext.getText().toString());
 					Log.d("MSG SENT", msg.getTo()+" : "+msg.getBody());
